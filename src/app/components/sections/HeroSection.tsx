@@ -42,6 +42,12 @@ export function HeroSection() {
   };
 
   const scrollToNext = () => {
+    const nextSection = document.getElementById('about');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
     window.scrollTo({
       top: window.innerHeight,
       behavior: 'smooth'
@@ -51,7 +57,7 @@ export function HeroSection() {
   return (
     <section 
       ref={sectionRef}
-      className="section-shell relative min-h-[760px] w-full overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-black dark:via-gray-900 dark:to-black"
+      className="section-shell relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 md:h-screen dark:from-black dark:via-gray-900 dark:to-black"
       onMouseMove={handleMouseMove}
     >
       <div

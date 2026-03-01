@@ -7,6 +7,8 @@ export default function Resume() {
   const handlePrint = () => {
     window.print();
   };
+  const githubHandle = 'shamim0902';
+  const githubProfileUrl = 'https://github.com/shamim0902';
 
   return (
     <div className="min-h-screen bg-white text-black print:bg-white">
@@ -101,27 +103,31 @@ export default function Resume() {
           </div>
         </section>
 
-        {/* Projects */}
+        {/* GitHub Focus */}
         <section className="mb-8">
-          <h3 className="text-xl font-bold mb-3 text-gray-900 border-b border-gray-300 pb-2">Key Projects</h3>
-          <div className="space-y-4">
-            {portfolioData.projects.filter(p => p.featured).map((project) => (
-              <div key={project.id}>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-bold text-gray-900">{project.title}</h4>
-                  <span className="text-sm text-gray-600">{project.year}</span>
-                </div>
-                <p className="text-gray-700 text-sm mb-2">{project.type}</p>
-                <p className="text-gray-600 text-sm mb-2 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <h3 className="text-xl font-bold mb-3 text-gray-900 border-b border-gray-300 pb-2">GitHub Focus</h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-sm">
+              <Github size={16} className="text-gray-500" />
+              <a
+                href={githubProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-gray-800 hover:text-cyan-600"
+              >
+                @{githubHandle}
+              </a>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Latest engineering work, open-source activity, and repository history are maintained on GitHub.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {portfolioData.skills.slice(0, 8).map((skill) => (
+                <span key={skill} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 

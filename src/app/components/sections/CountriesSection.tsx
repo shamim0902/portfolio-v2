@@ -302,7 +302,14 @@ export function CountriesSection() {
                 <ImageIcon size={14} className="text-cyan-700 dark:text-cyan-400" />
                 Travel Gallery Vibes
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-gray-400">Add your own photos in `public/media/travel`</p>
+              <a
+                href="https://www.facebook.com/shamim0902/photos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-cyan-500/35 bg-cyan-500/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-700 transition-colors hover:bg-cyan-500/20 dark:text-cyan-300"
+              >
+                Explore More With Me
+              </a>
             </div>
 
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
