@@ -1,16 +1,22 @@
 import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
 import portfolioData from '../../../data/portfolio.json';
+import { ProfileAvatar } from './ProfileAvatar';
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-slate-200 bg-slate-50 px-4 py-8 dark:border-white/10 dark:bg-black md:py-10">
+    <footer className="relative border-t border-slate-200 bg-slate-50/65 px-4 py-8 backdrop-blur-sm dark:border-white/10 dark:bg-black/65 md:py-10">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6 grid gap-5 md:grid-cols-3">
           {/* Brand */}
-          <div>
-            <h3 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">{portfolioData.name}</h3>
-            <p className="text-sm text-slate-600 dark:text-gray-400">{portfolioData.title}</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-gray-500">{portfolioData.location}</p>
+          <div className="rounded-xl border border-slate-200/80 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-center gap-3">
+              <ProfileAvatar className="h-12 w-12 rounded-xl border border-cyan-500/30 object-cover" />
+              <div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">{portfolioData.name}</h3>
+                <p className="text-xs text-slate-600 dark:text-gray-400">{portfolioData.title}</p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-gray-500">{portfolioData.location}</p>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}

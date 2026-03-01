@@ -5,6 +5,10 @@
   "email": "hasanuzzamanbe@gmail.com",
   "phone": "+8801749813408",
   "tagline": "Full-stack engineer focused on scalable products and clean user experience.",
+  "branding": {
+    "profileImage": "/media/profile-photo.jpg",
+    "profileFallback": "/media/profile-placeholder.svg"
+  },
   "about": "A full-stack software developer with strong experience in Vue, Node.js, WordPress, and product-focused engineering. I enjoy building reliable software that solves real user problems and scales with teams.",
   "roles": [
     "Former Principle Software Engineer at AuthLab",
@@ -53,6 +57,50 @@
     "Egypt",
     "Saudi Arabia",
     "Malaysia"
+  ],
+  "travelGallery": [
+    {
+      "id": "dubai-skyline",
+      "title": "City Lights",
+      "location": "Doha, Qatar",
+      "src": "/media/travel/travel-01.svg",
+      "accent": "linear-gradient(135deg, rgba(8,145,178,0.85), rgba(14,116,144,0.62), rgba(15,23,42,0.74))"
+    },
+    {
+      "id": "mountain-air",
+      "title": "Mountain Air",
+      "location": "Kathmandu, Nepal",
+      "src": "/media/travel/travel-02.svg",
+      "accent": "linear-gradient(135deg, rgba(16,185,129,0.78), rgba(6,182,212,0.52), rgba(15,23,42,0.74))"
+    },
+    {
+      "id": "coastal-sunset",
+      "title": "Golden Sunset",
+      "location": "Santorini, Greece",
+      "src": "/media/travel/travel-03.svg",
+      "accent": "linear-gradient(135deg, rgba(14,165,233,0.78), rgba(56,189,248,0.52), rgba(30,41,59,0.72))"
+    },
+    {
+      "id": "old-city",
+      "title": "Old City Walk",
+      "location": "Istanbul, Turkey",
+      "src": "/media/travel/travel-04.svg",
+      "accent": "linear-gradient(135deg, rgba(34,211,238,0.7), rgba(16,185,129,0.46), rgba(15,23,42,0.74))"
+    },
+    {
+      "id": "alpine-route",
+      "title": "Alpine Route",
+      "location": "Swiss Alps, Switzerland",
+      "src": "/media/travel/travel-05.svg",
+      "accent": "linear-gradient(135deg, rgba(125,211,252,0.74), rgba(6,182,212,0.56), rgba(15,23,42,0.76))"
+    },
+    {
+      "id": "desert-vibe",
+      "title": "Desert Vibe",
+      "location": "Cairo, Egypt",
+      "src": "/media/travel/travel-06.svg",
+      "accent": "linear-gradient(135deg, rgba(251,191,36,0.74), rgba(14,165,233,0.48), rgba(15,23,42,0.74))"
+    }
   ],
   "projects": [
     {

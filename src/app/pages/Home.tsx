@@ -7,7 +7,7 @@ import { Navigation } from '../components/shared/Navigation';
 import { Footer } from '../components/shared/Footer';
 import { CommandPalette } from '../components/command/CommandPalette';
 import { Toaster } from '../components/ui/sonner';
-import { CustomCursor } from '../components/effects/CustomCursor';
+import { SceneBackdrop } from '../components/effects/SceneBackdrop';
 
 // Lazy load heavy section
 const CountriesSection = lazy(() => import('../components/sections/CountriesSection').then(module => ({ default: module.CountriesSection })));
@@ -60,8 +60,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      <CustomCursor />
+    <div className="site-shell min-h-screen">
+      <SceneBackdrop />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       
       {/* Skip to content for accessibility */}

@@ -1,6 +1,7 @@
 import { Mail, Phone, Globe, Github, Linkedin, MapPin, Printer } from 'lucide-react';
 import portfolioData from '../../data/portfolio.json';
 import { Link } from 'react-router';
+import { ProfileAvatar } from '../components/shared/ProfileAvatar';
 
 export default function Resume() {
   const handlePrint = () => {
@@ -30,8 +31,16 @@ export default function Resume() {
       <div className="max-w-[210mm] mx-auto bg-white shadow-2xl print:shadow-none my-8 print:my-0 p-12 print:p-8">
         {/* Header */}
         <header className="mb-8 pb-6 border-b-2 border-gray-200">
-          <h1 className="text-4xl font-bold mb-2">{portfolioData.name}</h1>
-          <h2 className="text-xl text-gray-600 mb-4">{portfolioData.title}</h2>
+          <div className="mb-4 flex items-start gap-4">
+            <ProfileAvatar
+              className="h-20 w-20 rounded-2xl border border-gray-300 object-cover"
+              alt={`${portfolioData.name} profile`}
+            />
+            <div>
+              <h1 className="text-4xl font-bold mb-1">{portfolioData.name}</h1>
+              <h2 className="text-xl text-gray-600">{portfolioData.title}</h2>
+            </div>
+          </div>
           
           <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
             <div className="flex items-center gap-2">

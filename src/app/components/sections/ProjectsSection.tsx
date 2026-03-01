@@ -15,8 +15,12 @@ import {
 } from 'lucide-react';
 import { useSectionReveal } from '../../hooks/useSectionReveal';
 import { useTiltCards } from '../../hooks/useTiltCards';
+import { useDepthParallax } from '../../hooks/useDepthParallax';
+import { ProfileAvatar } from '../shared/ProfileAvatar';
 
 const GITHUB_PROFILE_API = 'https://api.github.com/users/shamim0902';
+const GITHUB_CACHE_KEY = 'portfolio-github-cache-v1';
+const GITHUB_CACHE_TTL_MS = 60 * 60 * 1000;
 
 interface GitHubProfile {
   avatar_url: string;
@@ -55,6 +59,12 @@ interface GitHubApiError {
   message?: string;
 }
 
+interface GitHubCachePayload {
+  cachedAt: number;
+  profile: GitHubProfile;
+  repos: GitHubRepo[];
+}
+
 const formatCount = (value: number) => value.toLocaleString('en-US');
 
 const formatDate = (value: string) =>
@@ -80,11 +90,48 @@ export function ProjectsSection() {
 
   useSectionReveal(sectionRef, '.reveal-item');
   useTiltCards(sectionRef);
+  useDepthParallax(sectionRef);
 
   useEffect(() => {
     const controller = new AbortController();
 
+    const isCacheValid = (value: GitHubCachePayload) => Date.now() - value.cachedAt < GITHUB_CACHE_TTL_MS;
+
+    const readCache = (): GitHubCachePayload | null => {
+      if (typeof window === 'undefined') return null;
+
+      try {
+        const raw = window.localStorage.getItem(GITHUB_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw) as GitHubCachePayload;
+        if (!parsed?.cachedAt || !parsed?.profile || !Array.isArray(parsed?.repos)) return null;
+        return parsed;
+      } catch {
+        return null;
+      }
+    };
+
+    const writeCache = (payload: GitHubCachePayload) => {
+      if (typeof window === 'undefined') return;
+      try {
+        window.localStorage.setItem(GITHUB_CACHE_KEY, JSON.stringify(payload));
+      } catch {
+        // Ignore quota/private mode failures.
+      }
+    };
+
     const loadGitHubData = async () => {
+      const bypassCache = reloadKey > 0;
+      const cached = readCache();
+
+      if (!bypassCache && cached && isCacheValid(cached)) {
+        setProfile(cached.profile);
+        setRepos(cached.repos);
+        setError(null);
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(true);
       setError(null);
 
@@ -112,10 +159,24 @@ export function ProjectsSection() {
         }
 
         const reposData = (await reposResponse.json()) as GitHubRepo[];
+        const normalizedRepos = reposData.filter((repo) => !repo.archived && !repo.fork);
         setProfile(profileData);
-        setRepos(reposData.filter((repo) => !repo.archived && !repo.fork));
+        setRepos(normalizedRepos);
+        writeCache({
+          cachedAt: Date.now(),
+          profile: profileData,
+          repos: normalizedRepos,
+        });
       } catch (fetchError) {
         if (fetchError instanceof Error && fetchError.name === 'AbortError') return;
+        if (cached) {
+          setProfile(cached.profile);
+          setRepos(cached.repos);
+          setError(null);
+          setIsLoading(false);
+          return;
+        }
+
         setError(fetchError instanceof Error ? fetchError.message : 'Unable to load GitHub data.');
       } finally {
         setIsLoading(false);
@@ -167,8 +228,10 @@ export function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="mesh-aurora relative bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
+      className="section-shell mesh-aurora relative bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
     >
+      <div data-depth="1.2" data-depth-x="-16" className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-cyan-400/12 blur-[110px]" />
+      <div data-depth="1.1" data-depth-x="18" className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-emerald-300/9 blur-[120px]" />
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -212,10 +275,10 @@ export function ProjectsSection() {
         {!isLoading && !error && profile && (
           <div className="space-y-6">
             <div className="grid gap-4 lg:grid-cols-[1.2fr,0.8fr]">
-              <div className="tilt-card holo-card rounded-xl p-4 reveal-item md:p-5">
+              <div className="tilt-card prism-card holo-card rounded-xl p-4 reveal-item md:p-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                  <img
-                    src={profile.avatar_url}
+                  <ProfileAvatar
+                    sources={[profile.avatar_url]}
                     alt={`${profileName} avatar`}
                     className="h-16 w-16 rounded-xl border border-slate-300/70 object-cover dark:border-white/10 md:h-20 md:w-20"
                   />
@@ -293,7 +356,7 @@ export function ProjectsSection() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="tilt-card holo-card rounded-xl p-3 reveal-item"
+                    className="tilt-card prism-card holo-card rounded-xl p-3 reveal-item"
                   >
                     <item.icon className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
                     <p className="mt-1 text-xl font-bold text-slate-900 dark:text-white">{formatCount(item.value)}</p>
@@ -303,7 +366,7 @@ export function ProjectsSection() {
               </div>
             </div>
 
-            <div className="holo-card rounded-xl p-4 reveal-item">
+            <div className="prism-card holo-card rounded-xl p-4 reveal-item">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">Top Repositories</h3>
                 <a
@@ -339,7 +402,7 @@ export function ProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ y: -2 }}
-                      className="tilt-card reveal-item group rounded-lg border border-slate-300/70 bg-white p-3 transition-colors hover:border-cyan-500/40 dark:border-white/10 dark:bg-white/[0.03]"
+                      className="tilt-card prism-card reveal-item group rounded-lg border border-slate-300/70 bg-white p-3 transition-colors hover:border-cyan-500/40 dark:border-white/10 dark:bg-white/[0.03]"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <h4 className="line-clamp-1 text-sm font-semibold text-slate-900 transition-colors group-hover:text-cyan-700 dark:text-white dark:group-hover:text-cyan-400">

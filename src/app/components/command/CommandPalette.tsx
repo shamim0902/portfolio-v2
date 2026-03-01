@@ -53,15 +53,20 @@ export function CommandPalette({ isDark, toggleTheme }: CommandPaletteProps) {
   return (
     <>
       {/* Keyboard shortcut hint */}
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-8 right-8 z-40 flex items-center gap-2 rounded-lg border border-slate-300/70 bg-white/90 px-4 py-2 text-slate-700 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 dark:hover:text-white"
+      <div
+        className="fixed bottom-8 right-4 z-40 md:right-8"
+        style={{ right: 'max(1rem, env(safe-area-inset-right))' }}
       >
-        <span className="text-sm">Command Menu</span>
-        <kbd className="rounded bg-slate-100 px-2 py-1 text-xs font-mono dark:bg-white/10">
-          {navigator.platform.includes('Mac') ? '⌘K' : 'Ctrl+K'}
-        </kbd>
-      </button>
+        <button
+          onClick={() => setOpen(true)}
+          className="prism-card flex items-center gap-2 rounded-lg border border-slate-300/70 bg-white/90 px-4 py-2 text-slate-700 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 dark:hover:text-white"
+        >
+          <span className="text-sm">Command Menu</span>
+          <kbd className="rounded bg-slate-100 px-2 py-1 text-xs font-mono dark:bg-white/10">
+            {navigator.platform.includes('Mac') ? '⌘K' : 'Ctrl+K'}
+          </kbd>
+        </button>
+      </div>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
