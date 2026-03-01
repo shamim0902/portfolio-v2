@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import { HeroSection } from '../components/sections/HeroSection';
 import { AboutSection } from '../components/sections/AboutSection';
 import { ProjectsSection } from '../components/sections/ProjectsSection';
@@ -8,6 +8,8 @@ import { Footer } from '../components/shared/Footer';
 import { CommandPalette } from '../components/command/CommandPalette';
 import { Toaster } from '../components/ui/sonner';
 import { SceneBackdrop } from '../components/effects/SceneBackdrop';
+import { ScrollCar } from '../components/effects/ScrollCar';
+import { useSectionSlideScroll } from '../hooks/useSectionSlideScroll';
 
 // Lazy load heavy section
 const CountriesSection = lazy(() => import('../components/sections/CountriesSection').then(module => ({ default: module.CountriesSection })));
@@ -45,6 +47,9 @@ const getInitialTheme = (): ThemeMode => {
 export default function Home() {
   const [theme, setTheme] = useState<ThemeMode>(getInitialTheme);
   const isDark = theme === 'dark';
+  const mainRef = useRef<HTMLElement>(null);
+
+  useSectionSlideScroll(mainRef);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -62,6 +67,7 @@ export default function Home() {
   return (
     <div className="site-shell min-h-screen">
       <SceneBackdrop />
+      <ScrollCar />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       
       {/* Skip to content for accessibility */}
@@ -72,7 +78,7 @@ export default function Home() {
         Skip to main content
       </a>
 
-      <main id="main-content">
+      <main id="main-content" ref={mainRef}>
         <HeroSection />
         <AboutSection />
         <ProjectsSection />

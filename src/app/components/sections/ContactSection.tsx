@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { motion } from 'motion/react';
 import { Mail, Phone, Github, Linkedin, Facebook, Twitter, Globe, Users, Send } from 'lucide-react';
 import portfolioData from '../../../data/portfolio.json';
 import { toast } from 'sonner';
@@ -19,7 +18,7 @@ const socialLinks = [
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useSectionReveal(sectionRef, '.reveal-item');
+  useSectionReveal(sectionRef, '.reveal-item', { once: true, start: 'top 92%' });
   useTiltCards(sectionRef);
   useDepthParallax(sectionRef);
 
@@ -32,32 +31,21 @@ export function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
+      data-slide-exempt="true"
       className="section-shell mesh-aurora relative bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-16 dark:from-black dark:via-gray-900 dark:to-black md:py-20"
     >
       <div data-depth="1.2" className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[110px]" />
       <div data-depth="1.1" data-depth-x="16" className="absolute -right-20 top-16 h-64 w-64 rounded-full bg-emerald-300/10 blur-[110px]" />
 
       <div className="relative z-10 mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 text-center reveal-item"
-        >
+        <div className="mb-6 text-center reveal-item">
           <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
             Contact
           </span>
           <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white md:text-3xl">Let's Work Together</h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="holo-card rounded-xl p-4 backdrop-blur-xl reveal-item md:p-5"
-        >
+        <div className="holo-card rounded-xl p-4 backdrop-blur-xl reveal-item md:p-5">
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-sm text-slate-600 dark:text-gray-400">
@@ -107,7 +95,7 @@ export function ContactSection() {
               </a>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

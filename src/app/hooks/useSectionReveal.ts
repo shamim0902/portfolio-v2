@@ -1,10 +1,22 @@
 import { RefObject, useEffect } from 'react';
 import { gsap } from '../utils/gsap';
 
-export function useSectionReveal(sectionRef: RefObject<HTMLElement>, selector = '.reveal-item') {
+type SectionRevealOptions = {
+  once?: boolean;
+  start?: string;
+};
+
+export function useSectionReveal(
+  sectionRef: RefObject<HTMLElement>,
+  selector = '.reveal-item',
+  options?: SectionRevealOptions
+) {
   useEffect(() => {
     if (!sectionRef.current) return;
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const once = options?.once ?? false;
+    const start = options?.start ?? 'top 88%';
 
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray<HTMLElement>(selector, sectionRef.current);
@@ -32,8 +44,8 @@ export function useSectionReveal(sectionRef: RefObject<HTMLElement>, selector = 
             delay: index * 0.03,
             scrollTrigger: {
               trigger: item,
-              start: 'top 88%',
-              toggleActions: 'play none none reverse',
+              start,
+              toggleActions: once ? 'play none none none' : 'play none none reverse',
             },
           }
         );
@@ -41,5 +53,5 @@ export function useSectionReveal(sectionRef: RefObject<HTMLElement>, selector = 
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [sectionRef, selector]);
+  }, [sectionRef, selector, options?.once, options?.start]);
 }
