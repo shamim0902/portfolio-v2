@@ -296,7 +296,7 @@ export function CountriesSection() {
             </div>
           </div>
 
-          <div className="tilt-card prism-card holo-card rounded-xl p-4 reveal-item lg:col-span-3">
+          <div className="holo-card rounded-xl p-4 reveal-item lg:col-span-3">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                 <ImageIcon size={14} className="text-cyan-700 dark:text-cyan-400" />
