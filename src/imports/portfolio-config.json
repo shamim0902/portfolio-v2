@@ -1,0 +1,235 @@
+
+
+
+You are a senior frontend architect, creative developer, motion designer, and performance engineer.
+
+Your task is to research, decide architecture, choose the best tools, and build a highly unique, production-ready portfolio website using Vue 3.
+
+You must analyze everything below and make technical decisions yourself (libraries, structure, performance strategy, animation stack, 3D tools, etc.). Justify decisions internally and implement accordingly.
+
+====================================================
+OBJECTIVE
+====================================================
+
+Build a premium, visually unique, high-performance portfolio website using Vue 3 (preferably Vite + TypeScript). It must feel modern, interactive, and differentiated from generic developer portfolios.
+
+The design should feel like:
+- Clean Swiss layout + strong typography
+- Subtle neon accent
+- Glassmorphism layered UI
+- Dark-first theme (light optional toggle)
+- Highly polished motion design
+- Interactive 3D hero
+- Micro-interactions everywhere
+
+====================================================
+CREATIVE & VISUAL REQUIREMENTS
+====================================================
+
+1. Create a 3D Hero Section
+   - Use TresJS (preferred) OR Three.js directly.
+   - Build an interactive floating “tech orb” or abstract network sphere.
+   - Mouse-reactive.
+   - Slight parallax on scroll.
+   - Smooth idle animation.
+   - Gracefully disable on prefers-reduced-motion.
+   - Fallback static background if WebGL unsupported.
+   - Optimize performance (limit DPR, pause when tab hidden).
+
+2. Advanced Motion System
+   - Use GSAP + ScrollTrigger OR alternative modern scroll animation solution.
+   - Add section reveal animations.
+   - Add parallax layers.
+   - Snap-like smooth section transitions.
+   - Use motion guidelines: consistent duration & easing.
+   - Respect reduced motion preference.
+
+3. Micro-Interactions
+   - Magnetic buttons
+   - Hover tilt project cards
+   - Animated underline links
+   - Copy-to-clipboard with toast feedback
+   - Optional cursor follower (disable on touch)
+   - Smooth page transitions
+
+4. Command Palette
+   - Open with Cmd+K / Ctrl+K
+   - Navigate sections
+   - Open external links
+   - Copy email / phone
+   - Toggle theme
+   - Lazy-load this feature
+
+5. Countries Visited Visualization
+   Choose best approach:
+   - D3 interactive world map
+   OR
+   - Three.js globe
+
+   Requirements:
+   - Highlight visited countries
+   - Click interaction
+   - Side searchable list
+   - Accessible keyboard interaction
+   - Lazy load the entire section
+
+6. Projects Section
+   - Searchable
+   - Filterable by type
+   - Clean card design with hover effect
+   - Modal detail view (accessible)
+   - Featured project logic decided by you
+   - All rendered from JSON
+
+7. Resume Route
+   - /resume route
+   - Clean printable A4 layout
+   - Built from same JSON
+   - Print-to-PDF friendly
+   - No animations in print mode
+
+====================================================
+ENGINEERING REQUIREMENTS
+====================================================
+
+- Vue 3 + Vite (TypeScript preferred)
+- TailwindCSS for styling
+- Strict component structure
+- JSON-driven rendering (single source of truth)
+- Lazy load heavy sections
+- Code splitting
+- Accessibility compliance (keyboard, aria, focus states)
+- SEO meta tags
+- Lighthouse 90+ desktop
+- Dark/light theme toggle
+- Responsive mobile-first
+- No unnecessary dependencies
+- Performance optimized
+- Use dynamic imports where appropriate
+- Use defineAsyncComponent for large sections
+
+====================================================
+ARCHITECTURE DECISION
+====================================================
+
+You must:
+
+1. Decide:
+   - Folder structure
+   - Component architecture
+   - State management strategy (if needed)
+   - Animation structure
+   - Composables organization
+   - Utility layers
+
+2. Provide:
+   - Full folder structure
+   - package.json with chosen dependencies
+   - Tailwind config
+   - Vite config
+   - All necessary source files
+   - Setup instructions
+   - Build instructions
+   - Deployment instructions (Netlify + GitHub Pages optional)
+
+====================================================
+PERFORMANCE & ACCESSIBILITY PASS
+====================================================
+
+After building:
+- Identify likely performance bottlenecks
+- Apply improvements
+- Ensure reduced motion support
+- Ensure keyboard navigation everywhere
+- Add skip-to-content
+- Proper heading structure
+- Focus visible states
+
+====================================================
+DATA SOURCE (Single Source of Truth)
+====================================================
+
+Use this JSON exactly as content. Do not hardcode content elsewhere.
+
+{
+  "name": "Hasanuzzaman",
+  "title": "Tech Lead",
+  "location": "Dhaka, Bangladesh",
+  "email": "hasanuzzamanbe@gmail.com",
+  "phone": "+8801749813408",
+  "tagline": "Full-stack engineer focused on scalable products and clean user experience.",
+  "about": "A full-stack software developer with strong experience in Vue, Node.js, WordPress, and product-focused engineering. I enjoy building reliable software that solves real user problems and scales with teams.",
+  "roles": [
+    "Former Principle Software Engineer at AuthLab",
+    "Former Lead Software Engineer at AuthLab",
+    "Former Senior Software Engineer at WPManageNinja"
+  ],
+  "skills": [
+    "JavaScript",
+    "Node Js",
+    "Vue js",
+    "React Js",
+    "jQuery",
+    "PHP",
+    "WordPress",
+    "HTML",
+    "CSS",
+    "Browser Extension"
+  ],
+  "links": {
+    "website": "https://hasanuzzaman.com/",
+    "github": "https://github.com/hasanuzzamanbe",
+    "linkedin": "https://www.linkedin.com/in/shamim0902/",
+    "facebook": "http://www.facebook.com/shamim0902",
+    "twitter": "http://www.twitter.com/shamim0902",
+    "wordpress": "https://profiles.wordpress.org/hasanuzzamanshamim",
+    "mentorship": "https://adplist.org/mentors/hasanuzzaman-shamim"
+  },
+  "countriesVisited": [
+    "Bangladesh",
+    "Greece",
+    "Italy",
+    "Vatican City",
+    "Austria",
+    "Slovakia",
+    "Czechia",
+    "Hungary",
+    "Germany",
+    "Qatar",
+    "India",
+    "Thailand",
+    "Nepal",
+    "Turkey",
+    "Netherlands",
+    "Belgium",
+    "Switzerland",
+    "Egypt",
+    "Saudi Arabia",
+    "Malaysia"
+  ]
+}
+
+====================================================
+FINAL OUTPUT REQUIREMENTS
+====================================================
+
+1. Full production-ready project code.
+2. Clean structured code.
+3. Clear explanation of architectural decisions.
+4. Instructions to run:
+   - npm install
+   - npm run dev
+   - npm run build
+5. Deployment guidance.
+
+You are free to choose the best modern tools if they improve uniqueness and performance.
+
+Prioritize:
+- Uniqueness
+- Elegance
+- Performance
+- Clean code
+- Scalability
+- Maintainability
+
+Build it like it is for a Tech Lead portfolio that must stand out globally.

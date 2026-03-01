@@ -1,0 +1,129 @@
+{
+  "name": "Hasanuzzaman",
+  "title": "Tech Lead",
+  "location": "Dhaka, Bangladesh",
+  "email": "hasanuzzamanbe@gmail.com",
+  "phone": "+8801749813408",
+  "tagline": "Full-stack engineer focused on scalable products and clean user experience.",
+  "about": "A full-stack software developer with strong experience in Vue, Node.js, WordPress, and product-focused engineering. I enjoy building reliable software that solves real user problems and scales with teams.",
+  "roles": [
+    "Former Principle Software Engineer at AuthLab",
+    "Former Lead Software Engineer at AuthLab",
+    "Former Senior Software Engineer at WPManageNinja"
+  ],
+  "skills": [
+    "JavaScript",
+    "Node Js",
+    "Vue js",
+    "React Js",
+    "jQuery",
+    "PHP",
+    "WordPress",
+    "HTML",
+    "CSS",
+    "Browser Extension"
+  ],
+  "links": {
+    "website": "https://hasanuzzaman.com/",
+    "github": "https://github.com/hasanuzzamanbe",
+    "linkedin": "https://www.linkedin.com/in/shamim0902/",
+    "facebook": "http://www.facebook.com/shamim0902",
+    "twitter": "http://www.twitter.com/shamim0902",
+    "wordpress": "https://profiles.wordpress.org/hasanuzzamanshamim",
+    "mentorship": "https://adplist.org/mentors/hasanuzzaman-shamim"
+  },
+  "countriesVisited": [
+    "Bangladesh",
+    "Greece",
+    "Italy",
+    "Vatican City",
+    "Austria",
+    "Slovakia",
+    "Czechia",
+    "Hungary",
+    "Germany",
+    "Qatar",
+    "India",
+    "Thailand",
+    "Nepal",
+    "Turkey",
+    "Netherlands",
+    "Belgium",
+    "Switzerland",
+    "Egypt",
+    "Saudi Arabia",
+    "Malaysia"
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title": "FluentCRM",
+      "type": "WordPress Plugin",
+      "description": "Self-hosted email marketing automation for WordPress with over 50,000+ active installations",
+      "tags": ["Vue.js", "PHP", "WordPress", "Email Marketing"],
+      "featured": true,
+      "year": "2020-2023",
+      "link": "https://fluentcrm.com"
+    },
+    {
+      "id": "2",
+      "title": "AuthLab Platform",
+      "type": "SaaS Platform",
+      "description": "Enterprise authentication and authorization platform handling millions of requests daily",
+      "tags": ["Node.js", "React", "Microservices", "Security"],
+      "featured": true,
+      "year": "2023-2024",
+      "link": null
+    },
+    {
+      "id": "3",
+      "title": "FluentForm",
+      "type": "WordPress Plugin",
+      "description": "Advanced form builder with conditional logic and payment integrations",
+      "tags": ["Vue.js", "PHP", "WordPress"],
+      "featured": false,
+      "year": "2019-2020",
+      "link": "https://fluentforms.com"
+    },
+    {
+      "id": "4",
+      "title": "WP Social Ninja",
+      "type": "WordPress Plugin",
+      "description": "Social media feed aggregator supporting multiple platforms",
+      "tags": ["Vue.js", "PHP", "API Integration"],
+      "featured": false,
+      "year": "2021-2022",
+      "link": null
+    },
+    {
+      "id": "5",
+      "title": "Browser Extension Suite",
+      "type": "Chrome Extension",
+      "description": "Productivity tools suite with 10,000+ users",
+      "tags": ["JavaScript", "Browser Extension", "Chrome API"],
+      "featured": false,
+      "year": "2020",
+      "link": null
+    }
+  ],
+  "experience": [
+    {
+      "role": "Principle Software Engineer",
+      "company": "AuthLab",
+      "period": "2023 - 2024",
+      "description": "Led technical architecture and team of 8 engineers building enterprise authentication platform"
+    },
+    {
+      "role": "Lead Software Engineer",
+      "company": "AuthLab",
+      "period": "2022 - 2023",
+      "description": "Architected microservices infrastructure and mentored junior developers"
+    },
+    {
+      "role": "Senior Software Engineer",
+      "company": "WPManageNinja",
+      "period": "2019 - 2022",
+      "description": "Built and maintained flagship WordPress plugins with millions of downloads"
+    }
+  ]
+}
