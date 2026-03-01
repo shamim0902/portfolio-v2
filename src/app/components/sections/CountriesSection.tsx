@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { Compass, Globe2, Radar, Search, Sparkles, Target } from 'lucide-react';
 import portfolioData from '../../../data/portfolio.json';
 import { getCountryMeta } from '../visualizations/countryMeta';
+import { useSectionReveal } from '../../hooks/useSectionReveal';
+import { useTiltCards } from '../../hooks/useTiltCards';
 
 const WorldMap = lazy(() => import('../visualizations/WorldMap'));
 
@@ -11,6 +13,9 @@ export function CountriesSection() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useSectionReveal(sectionRef, '.reveal-item');
+  useTiltCards(sectionRef);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,7 +62,7 @@ export function CountriesSection() {
     <section
       ref={sectionRef}
       id="travel"
-      className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
+      className="mesh-aurora relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
     >
       <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-cyan-500/15 blur-[120px]" />
       <div className="absolute -right-20 bottom-20 h-64 w-64 rounded-full bg-sky-500/10 blur-[120px]" />
@@ -68,7 +73,7 @@ export function CountriesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mb-10 text-center"
+          className="mb-10 text-center reveal-item"
         >
           <span className="text-sm font-semibold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
             Travel Intelligence
@@ -82,7 +87,7 @@ export function CountriesSection() {
         </motion.div>
 
         <div className="mb-6 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-xl border border-slate-300/70 bg-white/85 p-3 dark:border-white/10 dark:bg-white/5">
+          <div className="tilt-card holo-card rounded-xl p-3 reveal-item">
             <div className="flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
               <Globe2 size={14} />
               <span className="text-[11px] uppercase tracking-wider">Countries</span>
@@ -90,7 +95,7 @@ export function CountriesSection() {
             <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{countries.length}</p>
           </div>
 
-          <div className="rounded-xl border border-slate-300/70 bg-white/85 p-3 dark:border-white/10 dark:bg-white/5">
+          <div className="tilt-card holo-card rounded-xl p-3 reveal-item">
             <div className="flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
               <Compass size={14} />
               <span className="text-[11px] uppercase tracking-wider">Continents</span>
@@ -98,7 +103,7 @@ export function CountriesSection() {
             <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{continentBreakdown.length}</p>
           </div>
 
-          <div className="rounded-xl border border-slate-300/70 bg-white/85 p-3 dark:border-white/10 dark:bg-white/5">
+          <div className="tilt-card holo-card rounded-xl p-3 reveal-item">
             <div className="flex items-center gap-2 text-cyan-700 dark:text-cyan-400">
               <Radar size={14} />
               <span className="text-[11px] uppercase tracking-wider">Primary Region</span>
@@ -108,7 +113,7 @@ export function CountriesSection() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr),340px]">
-          <div className="relative min-h-[440px] overflow-hidden rounded-2xl border border-slate-300/70 bg-white/85 p-3 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 md:min-h-[480px]">
+          <div className="tilt-card holo-card relative min-h-[440px] overflow-hidden rounded-2xl p-3 reveal-item md:min-h-[480px]">
             {isInView ? (
               <Suspense
                 fallback={
@@ -131,7 +136,7 @@ export function CountriesSection() {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-xl border border-slate-300/70 bg-white/85 p-4 dark:border-white/10 dark:bg-white/5">
+            <div className="tilt-card holo-card rounded-xl p-4 reveal-item">
               <div className="mb-2 flex items-center gap-2">
                 <Target size={16} className="text-cyan-700 dark:text-cyan-400" />
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
@@ -183,7 +188,7 @@ export function CountriesSection() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-300/70 bg-white/85 p-4 dark:border-white/10 dark:bg-white/5">
+            <div className="tilt-card holo-card rounded-xl p-4 reveal-item">
               <div className="relative mb-3">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" size={18} />
                 <input

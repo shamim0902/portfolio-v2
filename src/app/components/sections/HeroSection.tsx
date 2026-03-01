@@ -1,11 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import portfolioData from '../../../data/portfolio.json';
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
+import { useSectionReveal } from '../../hooks/useSectionReveal';
+import { useTiltCards } from '../../hooks/useTiltCards';
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useSectionReveal(sectionRef, '.reveal-item');
+  useTiltCards(sectionRef);
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -34,6 +40,7 @@ export function HeroSection() {
 
   return (
     <section 
+      ref={sectionRef}
       className="relative h-[88vh] min-h-[620px] w-full overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-black dark:via-gray-900 dark:to-black"
       onMouseMove={handleMouseMove}
     >
@@ -61,18 +68,18 @@ export function HeroSection() {
       )}
       
       {/* Content overlay */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-10">
+      <div className="mesh-aurora relative z-10 flex h-full flex-col items-center justify-center px-4 pt-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="max-w-3xl text-center"
+          className="max-w-3xl text-center reveal-item"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-4"
+            className="mb-4 reveal-item"
           >
             <span className="inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-700 backdrop-blur-sm dark:text-cyan-400">
               {portfolioData.title}
@@ -83,7 +90,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl"
+            className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-7xl reveal-item"
           >
             {portfolioData.name}
           </motion.h1>
@@ -92,7 +99,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mb-2 text-lg text-slate-700 dark:text-gray-300 md:text-xl"
+            className="mb-2 text-lg text-slate-700 dark:text-gray-300 md:text-xl reveal-item"
           >
             {portfolioData.tagline}
           </motion.p>
@@ -101,7 +108,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex items-center justify-center gap-2 text-base text-slate-600 dark:text-gray-400"
+            className="flex items-center justify-center gap-2 text-base text-slate-600 dark:text-gray-400 reveal-item"
           >
             <span className="inline-block w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
             {portfolioData.location}
@@ -111,17 +118,17 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 flex flex-wrap justify-center gap-3"
+            className="mt-8 flex flex-wrap justify-center gap-3 reveal-item"
           >
             <a
               href={`mailto:${portfolioData.email}`}
-              className="group rounded-lg bg-cyan-500 px-6 py-3 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50"
+              className="tilt-card neon-outline group rounded-lg bg-cyan-500 px-6 py-3 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50"
             >
               Get in Touch
             </a>
             <a
               href="#projects"
-              className="rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+              className="tilt-card neon-outline rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               View Projects
             </a>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import {
   AlertCircle,
@@ -13,6 +13,8 @@ import {
   Star,
   Users,
 } from 'lucide-react';
+import { useSectionReveal } from '../../hooks/useSectionReveal';
+import { useTiltCards } from '../../hooks/useTiltCards';
 
 const GITHUB_PROFILE_API = 'https://api.github.com/users/shamim0902';
 
@@ -69,11 +71,15 @@ const normalizeWebsiteUrl = (value: string): string => {
 };
 
 export function ProjectsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [profile, setProfile] = useState<GitHubProfile | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
+
+  useSectionReveal(sectionRef, '.reveal-item');
+  useTiltCards(sectionRef);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -159,8 +165,9 @@ export function ProjectsSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
-      className="relative bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
+      className="mesh-aurora relative bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-20 dark:from-black dark:via-gray-900 dark:to-black md:py-24"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -168,7 +175,7 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-9 text-center"
+          className="mb-9 text-center reveal-item"
         >
           <span className="text-sm font-semibold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
             GitHub
@@ -182,14 +189,14 @@ export function ProjectsSection() {
         </motion.div>
 
         {isLoading && (
-          <div className="rounded-xl border border-slate-300/70 bg-white/90 p-8 text-center dark:border-white/10 dark:bg-white/5">
+          <div className="holo-card rounded-xl p-8 text-center reveal-item">
             <Loader2 className="mx-auto h-8 w-8 animate-spin text-cyan-500" />
             <p className="mt-3 text-sm text-slate-600 dark:text-gray-400">Loading GitHub profile and repositories...</p>
           </div>
         )}
 
         {!isLoading && error && (
-          <div className="rounded-xl border border-red-300/70 bg-red-50 p-6 text-center dark:border-red-400/40 dark:bg-red-950/20">
+          <div className="rounded-xl border border-red-300/70 bg-red-50 p-6 text-center reveal-item dark:border-red-400/40 dark:bg-red-950/20">
             <AlertCircle className="mx-auto h-8 w-8 text-red-500" />
             <p className="mt-2 text-sm text-red-700 dark:text-red-300">{error}</p>
             <button
@@ -205,7 +212,7 @@ export function ProjectsSection() {
         {!isLoading && !error && profile && (
           <div className="space-y-6">
             <div className="grid gap-4 lg:grid-cols-[1.2fr,0.8fr]">
-              <div className="rounded-xl border border-slate-300/70 bg-white/90 p-4 dark:border-white/10 dark:bg-white/5 md:p-5">
+              <div className="tilt-card holo-card rounded-xl p-4 reveal-item md:p-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                   <img
                     src={profile.avatar_url}
@@ -286,7 +293,7 @@ export function ProjectsSection() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-xl border border-slate-300/70 bg-white/90 p-3 dark:border-white/10 dark:bg-white/5"
+                    className="tilt-card holo-card rounded-xl p-3 reveal-item"
                   >
                     <item.icon className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
                     <p className="mt-1 text-xl font-bold text-slate-900 dark:text-white">{formatCount(item.value)}</p>
@@ -296,7 +303,7 @@ export function ProjectsSection() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-slate-300/70 bg-white/90 p-4 dark:border-white/10 dark:bg-white/5">
+            <div className="holo-card rounded-xl p-4 reveal-item">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">Top Repositories</h3>
                 <a
@@ -332,7 +339,7 @@ export function ProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ y: -2 }}
-                      className="group rounded-lg border border-slate-300/70 bg-white p-3 transition-colors hover:border-cyan-500/40 dark:border-white/10 dark:bg-white/[0.03]"
+                      className="tilt-card reveal-item group rounded-lg border border-slate-300/70 bg-white p-3 transition-colors hover:border-cyan-500/40 dark:border-white/10 dark:bg-white/[0.03]"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <h4 className="line-clamp-1 text-sm font-semibold text-slate-900 transition-colors group-hover:text-cyan-700 dark:text-white dark:group-hover:text-cyan-400">
