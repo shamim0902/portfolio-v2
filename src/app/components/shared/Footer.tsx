@@ -2,11 +2,18 @@ import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
 import portfolioData from '../../../data/portfolio.json';
 import { ProfileAvatar } from './ProfileAvatar';
 
+interface OwnedProject {
+  name: string;
+  url: string;
+}
+
 export function Footer() {
+  const ownedProjects = (portfolioData as { ownedProjects?: OwnedProject[] }).ownedProjects ?? [];
+
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50/65 px-4 py-8 backdrop-blur-sm dark:border-white/10 dark:bg-black/65 md:py-10">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-6 grid gap-5 md:grid-cols-3">
+        <div className="mb-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="rounded-xl border border-slate-200/80 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
             <div className="flex items-center gap-3">
@@ -64,6 +71,26 @@ export function Footer() {
               </a>
             </div>
           </div>
+
+          {/* Other Sites */}
+          {ownedProjects.length > 0 && (
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-slate-900 dark:text-white">Other Sites by Me</h4>
+              <div className="space-y-1">
+                {ownedProjects.slice(0, 5).map((project) => (
+                  <a
+                    key={project.url}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-xs text-slate-600 transition-colors hover:text-cyan-500 dark:text-gray-400 dark:hover:text-cyan-400"
+                  >
+                    {project.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Copyright */}

@@ -56,7 +56,7 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="tilt-card prism-card holo-card rounded-xl p-4 backdrop-blur-xl reveal-item md:p-5"
+          className="holo-card rounded-xl p-4 backdrop-blur-xl reveal-item md:p-5"
         >
           <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <div>
@@ -67,7 +67,7 @@ export function ContactSection() {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(portfolioData.email, 'Email')}
-                  className="tilt-card prism-card neon-outline inline-flex items-center gap-1.5 rounded-lg border border-slate-300/70 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-cyan-500/40 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:text-cyan-400"
+                  className="neon-outline inline-flex items-center gap-1.5 rounded-lg border border-slate-300/70 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-cyan-500/40 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:text-cyan-400"
                 >
                   <Mail size={13} />
                   {portfolioData.email}
@@ -76,7 +76,7 @@ export function ContactSection() {
                 <button
                   type="button"
                   onClick={() => copyToClipboard(portfolioData.phone, 'Phone')}
-                  className="tilt-card prism-card neon-outline inline-flex items-center gap-1.5 rounded-lg border border-slate-300/70 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-cyan-500/40 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:text-cyan-400"
+                  className="neon-outline inline-flex items-center gap-1.5 rounded-lg border border-slate-300/70 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:border-cyan-500/40 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300 dark:hover:text-cyan-400"
                 >
                   <Phone size={13} />
                   {portfolioData.phone}
@@ -86,7 +86,7 @@ export function ContactSection() {
 
             <a
               href={`mailto:${portfolioData.email}`}
-              className="tilt-card prism-card neon-outline inline-flex items-center justify-center gap-1.5 rounded-lg bg-cyan-500 px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-cyan-400"
+              className="neon-outline inline-flex items-center justify-center gap-1.5 rounded-lg bg-cyan-500 px-4 py-2 text-xs font-semibold text-black transition-colors hover:bg-cyan-400"
             >
               <Send size={13} />
               Email Me
@@ -100,7 +100,7 @@ export function ContactSection() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`tilt-card prism-card neon-outline inline-flex items-center gap-1 rounded-md border border-slate-300/70 bg-white px-2.5 py-1.5 text-[11px] text-slate-600 transition-colors dark:border-white/10 dark:bg-white/5 dark:text-gray-400 ${social.color}`}
+                className={`neon-outline inline-flex items-center gap-1 rounded-md border border-slate-300/70 bg-white px-2.5 py-1.5 text-[11px] text-slate-600 transition-colors dark:border-white/10 dark:bg-white/5 dark:text-gray-400 ${social.color}`}
               >
                 <social.icon size={12} />
                 <span>{social.label}</span>

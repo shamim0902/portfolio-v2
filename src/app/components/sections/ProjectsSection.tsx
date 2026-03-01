@@ -17,6 +17,7 @@ import { useSectionReveal } from '../../hooks/useSectionReveal';
 import { useTiltCards } from '../../hooks/useTiltCards';
 import { useDepthParallax } from '../../hooks/useDepthParallax';
 import { ProfileAvatar } from '../shared/ProfileAvatar';
+import portfolioData from '../../../data/portfolio.json';
 
 const GITHUB_PROFILE_API = 'https://api.github.com/users/shamim0902';
 const GITHUB_CACHE_KEY = 'portfolio-github-cache-v1';
@@ -59,6 +60,11 @@ interface GitHubApiError {
   message?: string;
 }
 
+interface OwnedProject {
+  name: string;
+  url: string;
+}
+
 interface GitHubCachePayload {
   cachedAt: number;
   profile: GitHubProfile;
@@ -87,6 +93,7 @@ export function ProjectsSection() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
+  const ownedProjects = (portfolioData as { ownedProjects?: OwnedProject[] }).ownedProjects ?? [];
 
   useSectionReveal(sectionRef, '.reveal-item');
   useTiltCards(sectionRef);
@@ -250,6 +257,38 @@ export function ProjectsSection() {
             Public profile data, repository highlights, and key stats are loaded directly from GitHub API.
           </p>
         </motion.div>
+
+        {ownedProjects.length > 0 && (
+          <div className="mb-6 prism-card holo-card rounded-xl p-4 reveal-item">
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Owner Projects</h3>
+              <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-cyan-700 dark:text-cyan-300">
+                Highlighted
+              </span>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {ownedProjects.map((project) => (
+                <a
+                  key={project.url}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tilt-card prism-card group rounded-lg border border-slate-300/70 bg-white p-3 transition-colors hover:border-cyan-500/50 dark:border-white/10 dark:bg-white/[0.04]"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-sm font-semibold text-slate-900 transition-colors group-hover:text-cyan-700 dark:text-white dark:group-hover:text-cyan-300">
+                      {project.name}
+                    </p>
+                    <ExternalLink size={14} className="mt-0.5 shrink-0 text-slate-500 dark:text-gray-400" />
+                  </div>
+                  <p className="mt-1 text-[11px] text-slate-500 dark:text-gray-400">
+                    {project.url.replace(/^https?:\/\//, '')}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {isLoading && (
           <div className="holo-card rounded-xl p-8 text-center reveal-item">

@@ -36,6 +36,28 @@
     "wordpress": "https://profiles.wordpress.org/hasanuzzamanshamim",
     "mentorship": "https://adplist.org/mentors/hasanuzzaman-shamim"
   },
+  "ownedProjects": [
+    {
+      "name": "VibeCoder",
+      "url": "https://vibecoder.bd"
+    },
+    {
+      "name": "FrameMe",
+      "url": "https://frameme.org"
+    },
+    {
+      "name": "WP Miners",
+      "url": "https://wpminers.com"
+    },
+    {
+      "name": "TryFluent Live",
+      "url": "https://lets.tryfluent.live"
+    },
+    {
+      "name": "Fluent Mailbox",
+      "url": "https://fluentmailbox.online/"
+    }
+  ],
   "countriesVisited": [
     "Bangladesh",
     "Greece",
