@@ -27,6 +27,16 @@
       <p class="countries-row animate-in">
         {{ countries.join('  /  ') }}
       </p>
+
+      <a
+        href="https://www.facebook.com/shamim0902/photos"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="see-more animate-in"
+      >
+        <span>See more photos</span>
+        <ArrowUpRight :size="14" />
+      </a>
     </div>
 
     <span class="slide-number">06</span>
@@ -34,8 +44,11 @@
 </template>
 
 <script>
+import { ArrowUpRight } from 'lucide-vue-next'
+
 export default {
   name: 'TravelSlide',
+  components: { ArrowUpRight },
   data() {
     return {
       gallery: [
@@ -161,6 +174,22 @@ export default {
   color: var(--text-muted);
   line-height: 2;
   text-align: center;
+}
+
+.see-more {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.see-more:hover {
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {

@@ -4,14 +4,14 @@
 
     <nav class="nav">
       <a
-        v-for="(item, i) in navItems"
-        :key="item"
+        v-for="item in navItems"
+        :key="item.label"
         href="#"
         class="nav-link"
-        :class="{ active: activeSection === i }"
-        @click.prevent="$emit('navigate', i)"
+        :class="{ active: activeSection === item.section }"
+        @click.prevent="$emit('navigate', item.section)"
       >
-        {{ item }}
+        {{ item.label }}
       </a>
 
       <div class="theme-toggle" @click="$emit('toggle-theme')">
@@ -38,7 +38,13 @@ export default {
   emits: ['toggle-theme', 'navigate'],
   data() {
     return {
-      navItems: ['About', 'Experience', 'Projects', 'Travel', 'Contact'],
+      navItems: [
+        { label: 'About', section: 1 },
+        { label: 'Experience', section: 2 },
+        { label: 'Projects', section: 4 },
+        { label: 'Travel', section: 5 },
+        { label: 'Contact', section: 6 },
+      ],
     }
   },
 }

@@ -14,12 +14,28 @@
 
         <div class="hero-ctas hero-animate">
           <a href="mailto:hasanuzzamanbe@gmail.com" class="cta-primary">Get in Touch</a>
-          <a href="#projects" class="cta-secondary" @click.prevent="$parent.$parent.scrollToSection(4)">View Projects</a>
+          <a href="#projects" class="cta-secondary" @click.prevent="$parent.scrollToSection(4)">View Projects</a>
+        </div>
+
+        <div class="hero-socials hero-animate">
+          <a href="https://github.com/shamim0902" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <Github :size="18" />
+          </a>
+          <a href="https://linkedin.com/in/hasanuzzamanbe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Linkedin :size="18" />
+          </a>
+          <a href="https://twitter.com/hasanuzzamanbe" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <Twitter :size="18" />
+          </a>
+          <a href="https://wpminers.com" target="_blank" rel="noopener noreferrer" aria-label="Website">
+            <Globe :size="18" />
+          </a>
         </div>
       </div>
 
       <div class="hero-image-wrap hero-image">
-        <img src="/media/profile-photo.jpg" alt="Hasanuzzaman" class="profile-img" />
+        <img src="/media/profile-photo.jpg" alt="Hasanuzzaman" class="profile-img profile-img-dark" />
+        <img src="/media/profile-photo-light.png" alt="Hasanuzzaman" class="profile-img profile-img-light" />
       </div>
     </div>
 
@@ -28,8 +44,11 @@
 </template>
 
 <script>
+import { Github, Linkedin, Twitter, Globe } from 'lucide-vue-next'
+
 export default {
   name: 'HeroSlide',
+  components: { Github, Linkedin, Twitter, Globe },
 }
 </script>
 
@@ -121,6 +140,35 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.profile-img-light {
+  display: none;
+}
+
+[data-theme="light"] .profile-img-dark {
+  display: none;
+}
+
+[data-theme="light"] .profile-img-light {
+  display: block;
+}
+
+.hero-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-socials a {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.hero-socials a:hover {
+  color: var(--text-primary);
 }
 
 @media (max-width: 1024px) {
