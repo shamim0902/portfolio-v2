@@ -1,0 +1,134 @@
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* GSAP handles scrolling */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========== Theme Variables ========== */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --bg-card: #111111;
+  --bg-card-hover: #1A1A1A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --text-muted: #666666;
+  --accent: #FFFFFF;
+  --border: #222222;
+  --border-light: #333333;
+  --toggle-bg: #222222;
+  --toggle-knob: #FFFFFF;
+}
+
+[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-card: #F0F0F0;
+  --bg-card-hover: #E8E8E8;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --accent: #000000;
+  --border: #E0E0E0;
+  --border-light: #CCCCCC;
+  --toggle-bg: #E0E0E0;
+  --toggle-knob: #111111;
+}
+
+/* ========== Typography ========== */
+.font-serif {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========== Layout ========== */
+#app {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.5s ease, color 0.3s ease;
+  overflow: hidden;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 120px;
+  color: var(--bg-card);
+  opacity: 0.3;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ========== Slide backgrounds ========== */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+
+/* ========== Section Label ========== */
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 44px;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* ========== Transitions ========== */
+* {
+  transition-property: color, background-color, border-color, fill;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+}
+
+/* Disable transition on scroll-related transforms */
+.slide, .slide-content, .gsap-animated {
+  transition-property: color, background-color, border-color;
+}
