@@ -27,7 +27,7 @@
           <a href="https://twitter.com/hasanuzzamanbe" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
             <Twitter :size="18" />
           </a>
-          <a href="https://wpminers.com" target="_blank" rel="noopener noreferrer" aria-label="Website">
+          <a href="https://wpminers.dev" target="_blank" rel="noopener noreferrer" aria-label="Website">
             <Globe :size="18" />
           </a>
         </div>

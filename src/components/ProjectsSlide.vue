@@ -54,9 +54,7 @@ export default {
       projects: [
         { name: 'VibeCoder', url: 'https://vibecoder.bd' },
         { name: 'FrameMe', url: 'https://frameme.org' },
-        { name: 'WP Miners', url: 'https://wpminers.com' },
-        { name: 'TryFluent Live', url: 'https://lets.tryfluent.live' },
-        { name: 'Fluent Mailbox', url: 'https://fluentmailbox.online/' },
+        { name: 'WP Miners', url: 'https://wpminers.dev' },
       ],
       stats: [
         { value: '—', label: 'Repositories' },
@@ -140,16 +138,17 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding-top: 12px;
-  color: var(--text-secondary);
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   transition: color 0.3s;
 }
 
 .see-more:hover {
-  color: var(--text-primary);
+  opacity: 0.7;
 }
 
 .github-stats {
